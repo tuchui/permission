@@ -31,6 +31,10 @@
     <!--使用jsonview-->
     <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
     <!--自定义json转换器-->
+    <!--配置 RequestHandlerMapping
+     解决 The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler
+     -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
         <list>
@@ -38,6 +42,8 @@
         </list>
         </property>
     </bean>
+
+
     <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
