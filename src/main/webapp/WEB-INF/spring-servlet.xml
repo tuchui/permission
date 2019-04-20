@@ -14,22 +14,31 @@
 
     <!--扫描controller 下标注的包-->
     <context:component-scan base-package="com.mao.controller"/>
+    <!--自定义httpInterceptor-->
+    <mvc:interceptors>
+        <bean class="com.mao.common.HttpInterceptor"/>
+    </mvc:interceptors>
     <!--使用component scan 可以省略 开启 @autowired @resource 注解-->
     <!--
     <mvc:annotation-driven/>
     <context:annotation-config/>
-
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
     -->
-    <!--视图解析器-->
 
+    <!--jsonView视图解析器-->
+    <!--beannameReslover-->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+    <!--使用jsonview-->
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+    <!--自定义异常解析器-->
+    <bean class="com.mao.common.SpringExceptionReslover"/>
+
+
+    <!--视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--使用jsonview-->
-    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
     <!--自定义json转换器-->
     <!--配置 RequestHandlerMapping
      解决 The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler
@@ -42,8 +51,6 @@
         </list>
         </property>
     </bean>
-
-
     <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
@@ -56,4 +63,5 @@
             <bean class="com.fasterxml.jackson.databind.ObjectMapper"></bean>
         </property>
     </bean>
+
 </beans>
