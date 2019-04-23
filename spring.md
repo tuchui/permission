@@ -383,3 +383,37 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
 
 ```
 
+#### 三 权限系统 部门相关管理
+
+##### 1  新增部门接口
+
+编写 DeptParam  
+
+编写 SysDeptController
+
+编写 SysDeptService 
+
+Builder的使用 建造者 @Builder注解
+
+void save(DeptParam param);
+
+private boolean checkExist(Integer parentId,String deptName ,Integer deptId);
+
+private String getLevel(Integer id)
+
+编写 LevleUtil
+
+##### 2  部门层级树开发
+
+编写 DeptDTO
+
+编写 SysTreeService  
+
+递归算法 层级遍历 deptTree()  deptListToTree()  transformDeptTree
+
+MultiMap  等价于 Map<String ,List< Object> >
+
+增加SysDeptMapper  geAllDept() 方法
+
+SysDeptController 增加 tree.json
+
